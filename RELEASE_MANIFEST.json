@@ -1,12 +1,12 @@
 {
   "name": "dag-agent",
   "version": "3.2.1",
-  "source_commit": "fd57648fd02728afb2ba97c13be16fd5e0105897",
+  "source_commit": "960151bde3448077c7d9cf27f1ee50c60379bf06",
   "source_clean_verified": true,
   "source_mode": "git-head-strict",
   "exporter_version": 2,
   "file_count": 184,
-  "total_bytes": 2044277,
+  "total_bytes": 2044554,
   "suspect_real_hits_count": 0,
   "suspect_real_hits": {},
   "verified_synthetic_test_hits": {
@@ -473,8 +473,8 @@
       "bytes": 9820
     },
     "tests/fixtures/soak/verify_soak.py": {
-      "sha256": "e0e160e4c8bac91374d82a912c643a053a6c7585130f2c47d4defd4bb588fca4",
-      "bytes": 69763
+      "sha256": "aade085c99868390f2c6ea2c59fd8608a290d6eaf05a55ee5aa12ff12c33ae8f",
+      "bytes": 69796
     },
     "tests/fixtures/soak_runner.py": {
       "sha256": "7dacbcd23b8f3bb382fddc978f01a970906da902e9c445a29aa7cdfdc324c06f",
@@ -729,8 +729,8 @@
       "bytes": 8540
     },
     "tests/v3/test_v67_release_gates.py": {
-      "sha256": "765421e817af946496d5800605996859ac325968cade702cb1078b13bd8a16bc",
-      "bytes": 11157
+      "sha256": "f917d51543bcaab6bbfb9590c39110f1dfa06fed94109f29a12090a4613e5264",
+      "bytes": 11401
     },
     "scripts/export_release_subset.py": {
       "sha256": "1bab563b3c83b679a4c1e3e90af50b307e1ed8f30ff8a832be062fdc223e9abb",

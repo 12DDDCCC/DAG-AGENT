@@ -236,6 +236,10 @@ def test_public_docs_links_version_and_current_capability():
         encoding="utf-8")
     assert "windows-latest" in ci and "ubuntu-latest" in ci
     assert "release/*" in ci
+    for workflow_text in (ci, release):
+        assert "Create clean-checkout working directories" in workflow_text
+        assert "mkdir -p work/" in workflow_text
+        assert "PYTHONUTF8: '1'" in workflow_text
     assert "verify_installed.py" in ci
     assert "tags: ['v*']" in release
     assert "--require-clean" in release and "SHA256SUMS" in release
@@ -255,6 +259,12 @@ def test_publication_scan_includes_untracked_nonignored_files(tmp_path):
     report = json.loads(out.read_text(encoding="utf-8"))
     assert "untracked.json" in report["hits"]
     assert report["scope"]["worktree_files"] == 2
+
+
+def test_public_fixture_sources_parse_under_python_311():
+    for path in sorted((ROOT / "tests" / "fixtures").rglob("*.py")):
+        ast.parse(path.read_text(encoding="utf-8"), filename=str(path),
+                  feature_version=(3, 11))
 
 
 def test_installed_mcp_checks_have_teeth():

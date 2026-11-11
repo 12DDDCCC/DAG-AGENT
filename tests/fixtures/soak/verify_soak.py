@@ -452,10 +452,11 @@ def main() -> int:
     ev_bad = [r["mid"] for r in db_reports
               if not r.get("empty_db")
               and r["accepted_without_valid_evidence"] > 0]
+    files_checked = sum(r["accepted_files_checked"] for r in db_reports
+                        if not r.get("empty_db"))
     verdict("accepted_hash_and_evidence", not hash_bad and not ev_bad,
             f"hash_bad={hash_bad or '无'} evidence_gap={ev_bad or '无'} "
-            f"files={sum(r['accepted_files_checked'] for r in db_reports
-                         if not r.get('empty_db'))}")
+            f"files={files_checked}")
 
     # 4) 结算对账
     budget_bad = [r["mid"] for r in db_reports
