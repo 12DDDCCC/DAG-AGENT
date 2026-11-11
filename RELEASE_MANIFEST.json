@@ -1,12 +1,12 @@
 {
   "name": "dag-agent",
   "version": "3.2.1",
-  "source_commit": "d49ef0dacdb99c092b78aa129e8ba88f29ffbc6c",
+  "source_commit": "fd57648fd02728afb2ba97c13be16fd5e0105897",
   "source_clean_verified": true,
   "source_mode": "git-head-strict",
   "exporter_version": 2,
   "file_count": 184,
-  "total_bytes": 2044009,
+  "total_bytes": 2044277,
   "suspect_real_hits_count": 0,
   "suspect_real_hits": {},
   "verified_synthetic_test_hits": {
@@ -57,8 +57,8 @@
       "bytes": 6669
     },
     "README.md": {
-      "sha256": "2c517c40cf04b77488912009d60b814806d1ca07c17dbe0dbcdb3ca54cded69c",
-      "bytes": 5814
+      "sha256": "3e31817ea9fc721444e0c30ca60071232b8c22a147255f6a4c8e60c56010e48a",
+      "bytes": 5836
     },
     "DESIGN.md": {
       "sha256": "d7f7b8c09f7ce96aee3c5dc11f0faa4d488c2acd97b706672d9b370739129619",
@@ -89,8 +89,8 @@
       "bytes": 1720
     },
     "CONTRIBUTING.md": {
-      "sha256": "eb9b2aa08d136ebccc1eb9aa8462f625e79da65bc7c23b5f21113e151cba0318",
-      "bytes": 3344
+      "sha256": "705baa1142f79d68011221c0835abe3d0bc8e11bdab8bc9b5217efc961e8141f",
+      "bytes": 3430
     },
     "MANIFEST.in": {
       "sha256": "b9916c3c186dc5130292ccb13389c805c4cc569302af994dd06e2edaeb91386a",
@@ -729,8 +729,8 @@
       "bytes": 8540
     },
     "tests/v3/test_v67_release_gates.py": {
-      "sha256": "a5938469148b2c594e0fdf05fd269f4ed1473a908456bfcd8045c8ab19f6526f",
-      "bytes": 11107
+      "sha256": "765421e817af946496d5800605996859ac325968cade702cb1078b13bd8a16bc",
+      "bytes": 11157
     },
     "scripts/export_release_subset.py": {
       "sha256": "1bab563b3c83b679a4c1e3e90af50b307e1ed8f30ff8a832be062fdc223e9abb",
@@ -761,12 +761,12 @@
       "bytes": 4157
     },
     ".github/workflows/ci.yml": {
-      "sha256": "e576c1cdf9e315db92dab8c5237b79ff5a6c282faa9d438e82345f94d3156c87",
-      "bytes": 4495
+      "sha256": "bf3cac8db485adf5d1a10e1995a22fde0ba9bbc4c066d80e8e5ec920c8cbfb40",
+      "bytes": 4550
     },
     ".github/workflows/release.yml": {
-      "sha256": "694c032301835cc072ddba2b61d79379b7e8c1e52bbe7a6d789fa43f95d05f9a",
-      "bytes": 4968
+      "sha256": "972801625d41b2b9ff836f8b226b7dc33aa7584276b24563a69bd34c716e6e64",
+      "bytes": 5023
     }
   }
 }

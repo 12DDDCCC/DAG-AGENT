@@ -4,6 +4,10 @@ on:
   push:
     tags: ['v*']
 
+env:
+  PYTHONUTF8: '1'
+  PYTHONDONTWRITEBYTECODE: '1'
+
 permissions:
   contents: write
 

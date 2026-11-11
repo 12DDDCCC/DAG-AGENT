@@ -21,6 +21,8 @@ python -m pip install ".[dev]"
 
 ## 测试
 
+Windows 默认控制台编码不是 UTF-8 时，先设置 `$env:PYTHONUTF8 = "1"`。
+
 常规：
 
 ```powershell

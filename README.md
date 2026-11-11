@@ -103,6 +103,7 @@ dag3_board(mid)                               # 返回看板实际路径
 在完整公开源码中：
 
 ```powershell
+$env:PYTHONUTF8 = "1"
 python -m pytest tests techstack_full_v2/tests techstack_research_v2/tests -m "not slow" --basetemp=work/tmp-pytest/public -q
 python -m pytest tests techstack_full_v2/tests techstack_research_v2/tests -m slow --basetemp=work/tmp-pytest/public-slow -q
 python scripts/publication_scan.py --self-test
