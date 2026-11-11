@@ -1,0 +1,15 @@
+order_id,region,currency,amount_cents,status
+o001,north,CNY,12000,paid
+o002,north,CNY,20000,paid
+o003,south,CNY,5000,paid
+o004,east,CNY,0,paid
+o005,east,CNY,9900,cancelled
+o006,south,USD,12345,paid
+o007,north,USD,2000,paid
+o008,east,USD,5000,paid
+o009,east,USD,0,paid
+o010,north,CNY,3000,cancelled
+o011,south,CNY,7000,paid
+o012,east,CNY,8000,paid
+o013,north,USD,9000,paid
+o014,south,USD,4444,cancelled

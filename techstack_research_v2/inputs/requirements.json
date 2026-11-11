@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "scenario": "数据库选型冒烟的预设需求，并非真实客户或已验证负载",
+  "currency": "CNY",
+  "annual_budget_cny": "1000000",
+  "requirements": [
+    {"id": "daily_ingest", "statement": "每天新增100GB；分析存储和写入设计的影响，不把公开基准直接外推为达标。"},
+    {"id": "concurrency", "statement": "1000个并发查询为设计假设；查询负载未冻结，不能宣称生产性能已经达标。"},
+    {"id": "annual_budget", "statement": "年度预算100万元人民币；说明价格来源、计量单位、月度年度换算以及未计入项目。"}
+  ],
+  "team": "熟悉SQL的小团队",
+  "scope": "仅PostgreSQL与ClickHouse，不开展消息队列、缓存和生产部署",
+  "truth_review": "机器验收不能确认外部事实，必须另行独立复核"
+}

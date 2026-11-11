@@ -1,0 +1,87 @@
+__pycache__/
+.pytest_cache/
+.pytest_tmp/
+.dbg_missions/
+.env
+.env.local
+.env.*
+.run.lock
+release_subset/
+*.egg-info/
+build/
+dist/
+
+# 运行数据与探针/浸泡副产物（不入库）
+/data/
+probe/
+soak_home/
+soak.log
+!tests/fixtures/**
+tests/fixtures/**/__pycache__/
+
+# 外部仓库克隆（调研原始证据，保留在盘但嵌套git不入库）
+审查记录/2026-09-29-费马仓库评估/fermats-last-theorem/
+
+# Soak 运行大文件：任务库/工件/采样原始数据不入库（关键证据 JSON 与工装入库）
+work/soak_autogrow/runs/*/home/
+work/soak_autogrow/runs/*/samples.jsonl
+work/soak_autogrow/runs/*/timeline.json
+work/soak_autogrow/upgraded_*/
+work/soak_autogrow/baseline_cf4855e/
+work/soak_autogrow/tmp/
+work/soak_autogrow/dbg_*.py
+
+# 历史验收轮运行原始数据（大体积）：摘要json/log/脚本入库，basetemp与soak副本不入
+work/2026-10-15-core-acceptance/soak/
+work/2026-10-15-core-acceptance/pytest_main/
+work/2026-10-15-core-acceptance/pytest_slow/
+work/2026-10-15-core-acceptance/pytest_legacy/
+work/2026-10-15-s8-independent/soak/
+work/2026-10-15-s8-independent/pytest_main/
+work/2026-10-15-s8-independent/pytest_slow/
+work/2026-10-15-s8-independent/pytest_legacy/
+work/2026-10-15-s8-independent/modular-w03wnhrd/
+
+# 历史审查/验收轮运行数据子目录（顶层摘要+冻结/架构/运行时证据子目录入库）
+work/2026-10-07-cli-review/main_g594tfe6/
+work/2026-10-07-cli-review/main_resume_r86zs53g/
+work/2026-10-07-cli-review/slow_resume_k9kv76k4/
+work/2026-10-08-cli-fix-review/kill_agent/
+work/2026-10-08-cli-fix-review/main_8k1ndffz/
+work/2026-10-08-cli-fix-review/slow_43va5l4d/
+work/2026-10-08-cli-fix2-review/kill_agent/
+work/2026-10-08-cli-fix2-review/main_508s1c_u/
+work/2026-10-08-cli-fix2-review/slow_7cq4ieor/
+work/2026-10-12-sixth-acceptance/pytest_legacy/
+work/2026-10-12-sixth-acceptance/pytest_main/
+work/2026-10-12-sixth-acceptance/pytest_slow/
+work/2026-10-12-sixth-acceptance/soak/
+work/2026-10-13-sixth-repair/pytest_legacy/
+work/2026-10-13-sixth-repair/pytest_main/
+work/2026-10-13-sixth-repair/pytest_slow/
+work/2026-10-13-sixth-repair/pytest_special/
+work/2026-10-13-sixth-repair/stage0_red/
+work/2026-10-13-sixth-repair/test_c3_c4_tmp/
+work/2026-10-14-ag-review/pytest_legacy/
+work/2026-10-14-ag-review/pytest_main/
+work/2026-10-14-ag-review/pytest_slow/
+work/2026-10-14-ag-review/soak/
+work/2026-10-14-s7-review/edge-fixtures-2993f542/
+work/2026-10-14-s7-review/edge-fixtures-4ce19dea/
+work/2026-10-14-s7-review/edge-fixtures-723c7f5f/
+work/2026-10-14-s7-review/pytest_legacy/
+work/2026-10-14-s7-review/pytest_main/
+work/2026-10-14-s7-review/pytest_slow/
+work/2026-10-14-s7-review/soak/
+work/2026-10-15-final-four-review/fixtures-0660f55b/
+work/2026-10-15-final-four-review/fixtures-5c9f7bbb/
+work/2026-10-15-final-four-review/pytest_targeted/
+work/2026-10-15-final-four-review/soak/
+# 临时实验与basetemp（结论已入报告/记忆）
+work/tmp-handle-probe*/
+work/tmp-pytest/
+work/tmp_judge_test.json
+
+# 第二轮发布准备：疑似真实凭据的本地 provider 配置（不入库；ignore 不消除历史，若已跟踪需另行处置）
+work/2026-11-08-glm-backend/provider_config*.json
+work/2026-11-02-cli-backends/local-provider.json

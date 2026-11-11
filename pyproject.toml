@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=77.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dag-agent"
+version = "3.2.1"
+description = "Verifiable growing DAG multi-agent orchestration kernel with SQLite state machine, independent assessment, and Obsidian projection."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "DAG-agent Contributors" }
+]
+keywords = ["dag", "agent", "mcp", "orchestration", "verification", "obsidian"]
+dependencies = [
+    "mcp>=1.0.0,<2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "build>=1.2.0",
+]
+
+[project.scripts]
+dag-agent = "dag_agent.cli:main"
+dag-agent-mcp = "mcp_server_v3:main"
+dag-agent-full50 = "techstack_full_v2.run_full:main"
+
+[tool.setuptools]
+py-modules = ["mcp_server_v3", "mcp_server"]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["dag_agent*", "techstack_full_v2*", "techstack_research_v2*"]
+exclude = ["tests*", "work*", "missions*", "release_subset*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.json", "*.md", "*.txt"]
+
+[tool.pytest.ini_options]
+markers = [
+    "slow: timing-dependent or long-observation tests (excluded by default; run with -m slow)",
+]
+addopts = '-m "not slow"'

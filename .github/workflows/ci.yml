@@ -1,0 +1,106 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master, 'release/*']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  windows-test:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Keep checkout bytes stable
+        shell: bash
+        run: |
+          git config core.autocrlf false
+          git reset --hard HEAD
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install project and development tools
+        shell: pwsh
+        run: python -m pip install ".[dev]"
+      - name: Run regular tests
+        shell: pwsh
+        run: python -m pytest tests techstack_full_v2/tests techstack_research_v2/tests -m "not slow" --basetemp=work/tmp-pytest/ci -q --junitxml=work/ci-regular-${{ matrix.python-version }}.xml
+      - name: Run slow tests
+        if: matrix.python-version == '3.12'
+        shell: pwsh
+        run: python -m pytest tests techstack_full_v2/tests techstack_research_v2/tests -m slow --basetemp=work/tmp-pytest/ci-slow -q --junitxml=work/ci-slow.xml
+      - name: Check publication scanner
+        shell: pwsh
+        run: python scripts/publication_scan.py --self-test
+      - name: Export clean release source
+        if: matrix.python-version == '3.12'
+        shell: pwsh
+        run: python scripts/export_release_subset.py --require-clean --out release_subset/dag-agent-v3.2.1
+      - name: Verify release source and current commit
+        if: matrix.python-version == '3.12'
+        shell: pwsh
+        run: |
+          $head = git rev-parse HEAD
+          if ($LASTEXITCODE -ne 0) { throw "git rev-parse failed" }
+          python scripts/verify_release.py release_subset/dag-agent-v3.2.1 --source-repo . --expected-commit $head
+          if ($LASTEXITCODE -ne 0) { throw "release source verification failed" }
+      - name: Build wheel and sdist
+        if: matrix.python-version == '3.12'
+        shell: pwsh
+        run: python -m build --outdir work/release-dist release_subset/dag-agent-v3.2.1
+      - name: Verify installed wheel
+        if: matrix.python-version == '3.12'
+        shell: pwsh
+        run: |
+          $wheel = Get-ChildItem work/release-dist/*.whl | Select-Object -First 1
+          if ($null -eq $wheel) { throw "wheel not found" }
+          python scripts/verify_installed.py --artifact $wheel.FullName --work-dir work/installed-wheel
+          if ($LASTEXITCODE -ne 0) { throw "wheel installed verification failed" }
+      - name: Verify installed sdist
+        if: matrix.python-version == '3.12'
+        shell: pwsh
+        run: |
+          $sdist = Get-ChildItem work/release-dist/*.tar.gz | Select-Object -First 1
+          if ($null -eq $sdist) { throw "sdist not found" }
+          python scripts/verify_installed.py --artifact $sdist.FullName --work-dir work/installed-sdist
+          if ($LASTEXITCODE -ne 0) { throw "sdist installed verification failed" }
+      - name: Upload verification summaries
+        if: always() && matrix.python-version == '3.12'
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-verification-${{ matrix.python-version }}
+          path: |
+            work/ci-*.xml
+            work/installed-*/installed-acceptance.json
+          if-no-files-found: warn
+
+  ubuntu-installed-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install build tools
+        run: python -m pip install ".[dev]"
+      - name: Build wheel
+        run: python -m build --wheel --outdir work/dist .
+      - name: Verify installed public commands
+        run: python scripts/verify_installed.py --artifact work/dist/dag_agent-3.2.1-py3-none-any.whl --work-dir work/installed-smoke
+      - name: Upload verification summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ubuntu-verification-${{ matrix.python-version }}
+          path: work/installed-smoke/installed-acceptance.json
+          if-no-files-found: warn

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "cancelled_orders": 3,
+  "totals": [
+    {
+      "region": "east",
+      "currency": "CNY",
+      "paid_orders": 2,
+      "gross_cents": 8000,
+      "refund_cents": 0,
+      "net_cents": 8000
+    },
+    {
+      "region": "north",
+      "currency": "CNY",
+      "paid_orders": 2,
+      "gross_cents": 30000,
+      "refund_cents": 4000,
+      "net_cents": 26000
+    },
+    {
+      "region": "south",
+      "currency": "CNY",
+      "paid_orders": 2,
+      "gross_cents": 12000,
+      "refund_cents": 8000,
+      "net_cents": 4000
+    },
+    {
+      "region": "east",
+      "currency": "USD",
+      "paid_orders": 2,
+      "gross_cents": 5000,
+      "refund_cents": 5000,
+      "net_cents": 0
+    },
+    {
+      "region": "north",
+      "currency": "USD",
+      "paid_orders": 2,
+      "gross_cents": 11000,
+      "refund_cents": 500,
+      "net_cents": 10500
+    },
+    {
+      "region": "south",
+      "currency": "USD",
+      "paid_orders": 1,
+      "gross_cents": 12345,
+      "refund_cents": 2345,
+      "net_cents": 10000
+    }
+  ]
+}

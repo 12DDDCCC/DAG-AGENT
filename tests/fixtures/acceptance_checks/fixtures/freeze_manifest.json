@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "fixture_version": "F1",
+  "files_sha256": {
+    "v1/expected.json": "aae437904df66abc54351fd15ca8c33e038f6ad536e2cdc383bba83eb17b43ba",
+    "v1/orders.csv": "e93576066e21037b3701b02a03076e06d19cdde98ad211811f732d790921907c",
+    "v1/refunds.csv": "4369bc85408ec9694e17facf8576e1140090fb0dd10069dc62408c0b9ff788c2",
+    "v2/expected.json": "5d41ba983350194160d23829275cc5116c36ef9f98db805058c678d1756dabc0",
+    "v2/orders.csv": "6426db13a78b6ce2a3f16a41918cc311e3857e95d746b971a71552743ba3d1a4",
+    "v2/refunds.csv": "dbfd1e1ad1c1e4d7201bdfc2af172b67d3e1b596d022be21a85c1bc32659730f"
+  },
+  "v2_change": "o001.amount_cents 10000->12000; add r009/o001/CNY/1000",
+  "scope": "Frozen functional inputs and manually listed expected JSON; not collaboration evidence",
+  "fixture_byte_policy": "LF-only bytes; protected by .gitattributes (-text); regenerate via work/normalize_frozen_fixtures.py"
+}

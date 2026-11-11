@@ -1,0 +1,3 @@
+# 冻结测试夹具：字节必须稳定（LF），禁止任何检出换行转换，否则冻结哈希失配
+tests/fixtures/acceptance_checks/fixtures/** -text
+tests/fixtures/accepted_snapshot/** -text

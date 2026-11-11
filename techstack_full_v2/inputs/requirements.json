@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "title": "实时数据分析平台技术选型研究",
+  "origin": "host_import",
+  "model_generated": false,
+  "hypothesis": {
+    "daily_new_data_gb": "100",
+    "existing_data_tb": "10",
+    "concurrent_queries": "1000",
+    "team_skill": "SQL 熟练",
+    "annual_budget_cny": "1000000",
+    "team_size": "10",
+    "implementation_window_months": "6"
+  },
+  "domains": ["database", "message-queue", "cache"],
+  "technologies": ["postgresql", "clickhouse", "mongodb", "kafka", "rabbitmq", "redis", "memcached"],
+  "requirements": [
+    {"id": "daily_ingest", "statement": "支持每日约 100GB 新增数据的持续写入与入库"},
+    {"id": "scale_storage", "statement": "可承载约 10TB 存量数据并可水平扩展"},
+    {"id": "concurrency", "statement": "支持约 1000 并发查询/消费客户端"},
+    {"id": "sql_friendly", "statement": "对 SQL 熟练的团队提供低学习成本的接口"},
+    {"id": "budget", "statement": "年度总拥有成本控制在 100 万元人民币以内（实验假设口径）"}
+  ],
+  "notes": "本文件为冻结实验假设，不是用户真实业务数据。缺少具体查询负载与硬件清单，任何结论不得声称已验证生产性能。团队规模 10 人与实施窗口 6 个月同为实验假设。"
+}

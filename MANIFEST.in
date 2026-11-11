@@ -1,0 +1,33 @@
+include pyproject.toml
+include pytest.ini
+include README.md
+include LICENSE
+include DESIGN.md
+include PROTOCOL.md
+include AUDITOR.md
+include CHANGELOG-v3.2.1.md
+include SECURITY.md
+include CONTRIBUTING.md
+include agent.md
+include RELEASE_MANIFEST.json
+include mcp_server.py
+include mcp_server_v3.py
+include soak_runner.py
+
+graft dag_agent
+graft techstack_full_v2
+graft techstack_research_v2
+graft tests
+graft scripts
+graft outputs
+graft 协议
+graft .github
+
+global-exclude *.py[cod]
+global-exclude *.db *.db-wal *.db-shm *.sqlite *.sqlite3
+global-exclude .env .env.* .run.lock
+prune work
+prune missions
+prune data
+prune release_subset
+prune 记忆
