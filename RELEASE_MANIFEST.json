@@ -1,12 +1,12 @@
 {
   "name": "dag-agent",
   "version": "3.2.1",
-  "source_commit": "960151bde3448077c7d9cf27f1ee50c60379bf06",
+  "source_commit": "832ee571f4b6dc46701a0e660640d354a846177d",
   "source_clean_verified": true,
   "source_mode": "git-head-strict",
   "exporter_version": 2,
   "file_count": 184,
-  "total_bytes": 2044554,
+  "total_bytes": 2046104,
   "suspect_real_hits_count": 0,
   "suspect_real_hits": {},
   "verified_synthetic_test_hits": {
@@ -729,8 +729,8 @@
       "bytes": 8540
     },
     "tests/v3/test_v67_release_gates.py": {
-      "sha256": "f917d51543bcaab6bbfb9590c39110f1dfa06fed94109f29a12090a4613e5264",
-      "bytes": 11401
+      "sha256": "4db5318a1755ebbaa42be56a6e928b002f66d31da7d9d43def1372f07d547470",
+      "bytes": 11705
     },
     "scripts/export_release_subset.py": {
       "sha256": "1bab563b3c83b679a4c1e3e90af50b307e1ed8f30ff8a832be062fdc223e9abb",
@@ -765,8 +765,8 @@
       "bytes": 4550
     },
     ".github/workflows/release.yml": {
-      "sha256": "972801625d41b2b9ff836f8b226b7dc33aa7584276b24563a69bd34c716e6e64",
-      "bytes": 5023
+      "sha256": "85fac39054b1d4652d4a2d9506efecf4e7b12012f87588045ad2cbb7f4cae701",
+      "bytes": 6269
     }
   }
 }

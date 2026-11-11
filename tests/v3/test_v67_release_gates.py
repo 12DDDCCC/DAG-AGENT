@@ -247,6 +247,11 @@ def test_public_docs_links_version_and_current_capability():
     assert '$env:GITHUB_REF_NAME -ne "v$($match.Groups[1].Value)"' in release
     assert "release-regular.xml" in release and "release-slow.xml" in release
     assert "Copy-Item outputs/DAG-agent-v3.2.1-公开发布验收报告.md" not in release
+    assert "RELEASE-NOTES-v3.2.1.md" in release
+    assert "gh release view $tag -R $repo" in release
+    assert "gh release upload $tag $assets --clobber -R $repo" in release
+    assert "gh release delete-asset $tag $asset.name -y -R $repo" in release
+    assert release.count("gh release create") == 1
 
 
 def test_publication_scan_includes_untracked_nonignored_files(tmp_path):

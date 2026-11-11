@@ -86,7 +86,7 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
           Copy-Item release_subset/dag-agent-v3.2.1/RELEASE_MANIFEST.json work/release-dist/
-          Copy-Item outputs/DAG-agent-v3.2.1-公开发布说明.md work/release-dist/
+          Copy-Item outputs/DAG-agent-v3.2.1-公开发布说明.md work/release-dist/RELEASE-NOTES-v3.2.1.md
           Copy-Item work/release-regular.xml work/release-dist/
           Copy-Item work/release-slow.xml work/release-dist/
           Copy-Item work/installed-wheel/installed-acceptance.json work/release-dist/installed-wheel.json
@@ -99,6 +99,31 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          $ErrorActionPreference = 'Stop'
+          $tag = $env:GITHUB_REF_NAME
+          $repo = $env:GITHUB_REPOSITORY
+          $title = "DAG-agent $tag 技术预览"
+          $notes = "work/release-dist/RELEASE-NOTES-v3.2.1.md"
           $assets = Get-ChildItem work/release-dist -File | Sort-Object Name | ForEach-Object FullName
-          & gh release create "$env:GITHUB_REF_NAME" $assets --verify-tag --title "DAG-agent $env:GITHUB_REF_NAME 技术预览" --notes-file work/release-dist/DAG-agent-v3.2.1-公开发布说明.md
-          if ($LASTEXITCODE -ne 0) { throw "GitHub Release creation failed" }
+          $assetNames = Get-ChildItem work/release-dist -File | Sort-Object Name | ForEach-Object Name
+
+          & gh release view $tag -R $repo --json tagName | Out-Null
+          $viewCode = $LASTEXITCODE
+          if ($viewCode -eq 0) {
+            $existing = gh release view $tag -R $repo --json assets | ConvertFrom-Json
+            foreach ($asset in $existing.assets) {
+              if ($assetNames -notcontains $asset.name) {
+                & gh release delete-asset $tag $asset.name -y -R $repo
+                if ($LASTEXITCODE -ne 0) { throw "stale asset deletion failed: $($asset.name)" }
+              }
+            }
+            & gh release upload $tag $assets --clobber -R $repo
+            if ($LASTEXITCODE -ne 0) { throw "GitHub Release asset upload failed" }
+            & gh release edit $tag --title $title --notes-file $notes -R $repo
+            if ($LASTEXITCODE -ne 0) { throw "GitHub Release update failed" }
+          } elseif ($viewCode -eq 1) {
+            & gh release create $tag $assets --verify-tag --title $title --notes-file $notes -R $repo
+            if ($LASTEXITCODE -ne 0) { throw "GitHub Release creation failed" }
+          } else {
+            throw "GitHub Release lookup failed with exit code $viewCode"
+          }
