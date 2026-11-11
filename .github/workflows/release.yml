@@ -20,6 +20,9 @@ jobs:
         run: |
           git config core.autocrlf false
           git reset --hard HEAD
+      - name: Create clean-checkout working directories
+        shell: bash
+        run: mkdir -p work/tmp-pytest/release work/tmp-pytest/release-slow work/release-dist
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
